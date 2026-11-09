@@ -1,0 +1,12 @@
+{
+  "name": "aam-insane-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AAM INSANE music label website",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0"
+  }
+}
