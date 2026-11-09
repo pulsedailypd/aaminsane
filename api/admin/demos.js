@@ -1,0 +1,2 @@
+const {send,method,body,isAdmin,db,FieldValue,clean}=require("../../_lib/admin");
+module.exports=async(req,res)=>{if(!method(req,res,["POST"]))return;if(!isAdmin(req))return send(res,401,{error:"Unauthorized"});try{const d=body(req);if(!d.id||!["new","reviewing","accepted","rejected"].includes(d.status))return send(res,400,{error:"Invalid demo status"});await db().collection("demos").doc(clean(d.id,120)).set({status:d.status,reviewedAt:FieldValue.serverTimestamp()},{merge:true});return send(res,200,{ok:true});}catch{return send(res,503,{error:"Could not update demo."});}};
