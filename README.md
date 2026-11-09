@@ -9,6 +9,7 @@ Premium music label website and admin starter.
 - Admin dashboard at /admin.html.
 - Admin can add/delete releases and artists.
 - Admin can review demo submissions and update status.
+- Rejection asks the admin for a reason, emails it to the artist, and records the reason.
 - Admin can switch public demo submissions ON/OFF.
 - Server-side Firebase Admin SDK; Firestore client access denied by rules.
 
