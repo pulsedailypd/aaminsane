@@ -34,7 +34,7 @@ module.exports=async(req,res)=>{
       }
     }
     const update={status,reviewedAt:FieldValue.serverTimestamp()};
-    if(status==="rejected"){update.rejectionReason=reason;update.rejectionEmailSentAt=FieldValue.serverTimestamp();}
+    if(status==="rejected"){update.rejectionReason=reason;if(emailSent)update.rejectionEmailSentAt=FieldValue.serverTimestamp();}
     else if(status!=="rejected"){update.rejectionReason=FieldValue.delete();}
     await ref.set(update,{merge:true});
     return send(res,200,{ok:true,emailSent,message:status==="rejected"?(emailSent?"Rejected and email sent.":"Rejection already recorded; no duplicate email sent."):"Demo status updated."});
