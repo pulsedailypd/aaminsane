@@ -3,6 +3,44 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 :root{--bg:#090909;--panel:#121212;--line:#2b2b2b;--text:#f3f1ed;--muted:#929292;--acid:#d6ff3f;--red:#ff5570}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif}header{padding:22px 5vw;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.logo{font-size:22px;font-weight:700;letter-spacing:-.08em}.logo b{color:var(--acid)}a{color:var(--acid)}button{cursor:pointer;font:11px 'DM Mono';letter-spacing:.08em;text-transform:uppercase;padding:13px 17px;background:var(--acid);color:#090909;border:0}button.ghost{background:transparent;color:var(--text);border:1px solid #555}button.danger{background:transparent;color:var(--red);border:1px solid #733}main{max-width:1100px;margin:50px auto;padding:0 24px}.eyebrow{font:10px 'DM Mono';color:var(--acid);letter-spacing:.18em;text-transform:uppercase}.login{max-width:420px;margin:90px auto;background:var(--panel);border:1px solid var(--line);padding:32px}.login h1{font-size:38px;letter-spacing:-.07em;margin:10px 0 24px}input,textarea,select{width:100%;padding:14px;background:#080808;border:1px solid #383838;color:white;font:13px 'Space Grotesk';margin:7px 0;outline:none}input:focus,textarea:focus{border-color:var(--acid)}.status{font:11px 'DM Mono';color:var(--acid);min-height:22px;margin-top:12px}.hidden{display:none!important}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:30px}.top h1{font-size:clamp(38px,7vw,64px);letter-spacing:-.08em;margin:8px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.card{background:var(--panel);border:1px solid var(--line);padding:22px}.card small{font:10px 'DM Mono';color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.card strong{display:block;font-size:32px;margin-top:10px}.switchrow{display:flex;justify-content:space-between;align-items:center;gap:20px}.switch{width:54px;height:30px;border-radius:30px;background:#444;border:0;padding:3px}.switch:after{content:"";display:block;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.switch.on{background:var(--acid)}.switch.on:after{transform:translateX(24px);background:#090909}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:var(--panel);border:1px solid var(--line);padding:22px;margin:16px 0}.panel h2{font-size:22px;letter-spacing:-.04em;margin:0 0 14px}.item{border-top:1px solid var(--line);padding:14px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}.item p{margin:3px 0;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.item a{font-size:12px}.tag{font:10px 'DM Mono';color:var(--acid);text-transform:uppercase}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}.wide{grid-column:1/-1}.muted{color:var(--muted);font-size:12px;line-height:1.6}.demo-actions{display:flex;gap:7px;flex-wrap:wrap}.demo-actions select{width:auto;min-width:120px;margin:0;padding:8px}@media(max-width:760px){.grid,.cols{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}main{margin:28px auto}.panel{padding:17px}.item{align-items:flex-start;flex-direction:column}}
+
+/* Mobile and tablet layout refinements */
+button,input,textarea,select{touch-action:manipulation}
+@media(max-width:760px){
+  header{padding:16px 5vw;gap:12px;flex-wrap:wrap}
+  header>a:last-child{font-size:12px}
+  main{width:100%;padding:0 16px;margin:24px auto}
+  .login{width:100%;max-width:420px;margin:48px auto;padding:24px 18px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .grid .card:last-child{grid-column:1/-1}
+  .card{padding:16px}
+  .card strong{font-size:28px}
+  .cols{grid-template-columns:minmax(0,1fr);gap:0}
+  .panel{min-width:0;padding:16px;margin:12px 0}
+  .switchrow{align-items:flex-start;gap:12px}
+  .switchrow>div{min-width:0}
+  .item{min-width:0;overflow-wrap:anywhere}
+  .item>div{min-width:0;width:100%}
+  .demo-actions{width:100%;align-items:center}
+  .demo-actions select{flex:1;min-width:0}
+  .formgrid{grid-template-columns:minmax(0,1fr)}
+  .wide{grid-column:auto}
+  input,textarea,select{font-size:16px;min-width:0}
+  button{min-height:44px}
+  .top{align-items:flex-start}
+}
+@media(max-width:420px){
+  main{padding:0 12px}
+  .login{margin:32px auto;padding:22px 15px}
+  .grid{gap:8px}
+  .card{padding:13px}
+  .card small{font-size:9px}
+  .card strong{font-size:25px}
+  .panel{padding:14px}
+  .switchrow h2{font-size:18px}
+  header .logo{font-size:19px}
+}
+
 </style></head><body>
 <header><a class="logo" href="/">AAM<b>.</b>INSANE <span style="font:10px 'DM Mono';color:#888;letter-spacing:.1em">/ ADMIN</span></a><a href="/">← View website</a></header>
 <main>
