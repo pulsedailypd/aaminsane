@@ -23,13 +23,13 @@ module.exports=async(req,res)=>{
     const ref=db().collection("demos").doc(id),snap=await ref.get();
     if(!snap.exists)return send(res,404,{error:"Demo submission not found."});
     const current=snap.data()||{};
-    let reason="";
+    let reason="",emailSent=false;
     if(status==="rejected"){
       reason=clean(d.reason,2000);
       if(reason.length<3)return send(res,400,{error:"Please enter a rejection reason (at least 3 characters)."});
       if(!current.email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(current.email))return send(res,400,{error:"This submission has no valid email address."});
       if(current.status!=="rejected"||clean(current.rejectionReason,2000)!==reason){
-        try{await sendRejectionEmail(current,reason);}
+        try{await sendRejectionEmail(current,reason);emailSent=true;}
         catch(error){return send(res,503,{error:"Email could not be sent. The demo status was not changed. Check Gmail SMTP settings in Vercel.",detail:process.env.NODE_ENV==="development"?String(error.message):undefined});}
       }
     }
@@ -37,6 +37,6 @@ module.exports=async(req,res)=>{
     if(status==="rejected"){update.rejectionReason=reason;update.rejectionEmailSentAt=FieldValue.serverTimestamp();}
     else if(status!=="rejected"){update.rejectionReason=FieldValue.delete();}
     await ref.set(update,{merge:true});
-    return send(res,200,{ok:true,emailSent:status==="rejected",message:status==="rejected"?"Rejected and email sent.":"Demo status updated."});
+    return send(res,200,{ok:true,emailSent,message:status==="rejected"?(emailSent?"Rejected and email sent.":"Rejection already recorded; no duplicate email sent."):"Demo status updated."});
   }catch{return send(res,503,{error:"Could not update demo."});}
 };
