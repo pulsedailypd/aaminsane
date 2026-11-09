@@ -1,0 +1,2 @@
+const {send,method,db}=require("../_lib/admin");
+module.exports=async(req,res)=>{if(!method(req,res,["GET"]))return;try{const s=db(),[a,b]=await Promise.all([s.collection("releases").orderBy("createdAt","desc").limit(40).get(),s.collection("artists").orderBy("createdAt","desc").limit(40).get()]);const rows=q=>q.docs.map(x=>({id:x.id,...x.data()}));return send(res,200,{releases:rows(a),artists:rows(b)});}catch{return send(res,200,{releases:[],artists:[]});}};
