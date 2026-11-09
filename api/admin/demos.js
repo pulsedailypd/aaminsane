@@ -43,6 +43,7 @@ module.exports=async(req,res)=>{
       }
       const update={status,reviewedAt:FieldValue.serverTimestamp()};
       update[noteField]=note||FieldValue.delete();
+      update[status==="accepted"?"rejectionReason":"acceptanceMessage"]=FieldValue.delete();
       if(emailSent)update[sentField]=FieldValue.serverTimestamp();
       await ref.set(update,{merge:true});
       return send(res,200,{ok:true,emailSent,message:emailSent?(status==="accepted"?"Accepted and email sent.":"Rejected and email sent."):(status==="accepted"?"Acceptance already recorded; no duplicate email sent.":"Rejection already recorded; no duplicate email sent.")});
